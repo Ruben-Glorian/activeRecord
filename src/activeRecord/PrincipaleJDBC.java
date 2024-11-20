@@ -14,14 +14,9 @@ public class PrincipaleJDBC {
 
     public static void main(String[] args) {
 
-
-        //String portNumber = "8889"; // Port par défaut sur MAMP
         String tableName = "personne";
 
         try {
-            // chargement du driver jdbc
-            Class.forName("com.mysql.cj.jdbc.Driver");
-
             DBConnection dbConnection = new DBConnection() ;
             Connection connect = dbConnection.getConnection() ;
             // creation de la table Personne
@@ -122,7 +117,10 @@ public class PrincipaleJDBC {
             stmt = connect.createStatement();
             stmt.executeUpdate(drop);
 
-        } catch (Exception e) {
+        } catch (SQLException e) {
+            System.out.println("*** ERREUR SQL ***");
+            e.printStackTrace();
+        }  catch (Exception e) {
             System.out.println("*** ERREUR inconnue... ***");
             e.printStackTrace();
         }

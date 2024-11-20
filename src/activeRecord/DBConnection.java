@@ -12,11 +12,12 @@ public class DBConnection {
     String password = "";
     String serverName = "127.0.0.1";
     String portNumber = "3306";
+    //String portNumber = "8889"; // Port par défaut sur MAMP
 
     // il faut une base nommee testPersonne !
     String dbName = "testpersonne";
 
-    Connection connect ;
+    static Connection connect ;
 
     public DBConnection() {
         try {
@@ -41,7 +42,14 @@ public class DBConnection {
         }
     }
 
-    public Connection getConnection(){
+    public void setNomDB(String nomDB){
+        
+    }
+
+    public static Connection getConnection(){
+        if(connect == null){
+            new DBConnection() ;
+        }
         return connect ;
     }
 }
